@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+/* Aparência sem PDF carregado */
+#div-carregarPDF {
+    padding: 30px;
+    border: 2px dashed #6c757d;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+#lbl-input-file {
+    display: inline-block;
+    background-color: #343a40;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#lbl-input-file:hover {
+    background-color: #495057;
+}
+
+#lbl-input-file img {
+    width: 40px;
+}
+
+#drag-area p {
+    margin: 10px 0 0;
+}
+
+/* Aparência com PDF carregado */
+#info-pdf {
+    background-color: #e9ecef;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid #ced4da;
+}
+
+.icon-pdf {
+    width: 30px;
+    margin-right: 10px;
+}
+
+/* Estilo específico para o ícone de fechar PDF */
+#info-pdf .fechar-ico {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+#info-pdf .fechar-ico:hover {
+    transform: scale(1.2);
+}
+
+/* Botões */
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+.btn {
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    opacity: 0.85;
+}
+
+/* Estilo para o botão Analisar PDF */
+.btn-analisar {
+    background-color: #12ca74;
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-analisar:hover {
+    background-color: #0daa61;
+    color: white;
+    opacity: 0.9;
+}
+
+.btn-analisar .material-symbols-outlined {
+    font-size: 2rem; /* Aumentando o tamanho do ícone para deixá-lo mais destacado */
+    margin-right: 8px;
+}
+
+/* Efeito visual quando o arquivo é arrastado para a área */
+#drag-area.dragover {
+    background-color: #e9ecef;
+    border-color: #007bff;
+    border-width: 2px;
+    border-style: dashed;
+}
+
+/* Transições suaves */
+.form-check-input {
+    width: 20px;
+    height: 20px;
+}
+#possuiFotoPDF {
+    user-select: none;
+}
+#possuiFotoPDF label {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+textarea:focus {
+    border-color: #0d6efd;
+}
+
+/* Outras classes para layout geral */
+textarea {
+    resize: vertical;
+}
+
+/* Rodapé */
+footer p {
+    margin: 0;
+}
+
+#avisoFlutuante {
+    position: fixed;
+    bottom: 70px;
+    right: 20px;
+    z-index: 9999;
+}
+
+#btnCopiarResultado {
+    padding: 10px 20px; /* Espaçamento para comportar o texto e o ícone */
+    border-radius: 6px; /* Altera o formato do botão para oval, já que terá um texto agora */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+#btnCopiarResultado:hover {
+    background-color: #6c757d;
+}
+
+#btnCopiarResultado .material-symbols-outlined {
+    font-size: 24px; /* Tamanho do ícone */
+}
+
+
+#btnCopiarCPF {
+    padding: 10px 20px; /* Espaçamento para comportar o texto e o ícone */
+    border-radius: 6px; /* Altera o formato do botão para oval, já que terá um texto agora */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+#btnCopiarCPF:hover {
+    background-color: #6c757d;
+}
+
+#btnCopiarCPF .material-symbols-outlined {
+    font-size: 24px; /* Tamanho do ícone */
+}
+
+#btnCopiarCPF span {
+    font-size: 16px; /* Tamanho do texto */
+    margin-left: 8px; /* Espaçamento entre o ícone e o texto */
+}
+
+
+#btnCopiarRG {
+    padding: 10px 20px; /* Espaçamento para o texto e o ícone */
+    border-radius: 6px; /* Deixa o botão com um formato oval */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+#btnCopiarRG:hover {
+    background-color: #6c757d;
+}
+
+#btnCopiarRG .material-symbols-outlined {
+    font-size: 24px; /* Tamanho do ícone */
+}
+
+#btnCopiarRG span {
+    font-size: 16px; /* Tamanho do texto */
+    margin-left: 8px; /* Espaçamento entre o ícone e o texto */
+}
+
+
+#btnCopiarNome {
+    padding: 10px 20px; /* Espaçamento adequado para o texto e ícone */
+    border-radius: 6px; /* Deixa o botão com um formato oval */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+#btnCopiarNome:hover {
+    background-color: #6c757d;
+}
+
+#btnCopiarNome .material-symbols-outlined {
+    font-size: 24px; /* Tamanho do ícone */
+}
+
+#btnCopiarNome span {
+    font-size: 16px; /* Tamanho do texto */
+    margin-left: 8px; /* Espaçamento entre o ícone e o texto */
+}
+
+#section-tabela {
+    margin-top: 20px;
+}
+
+#dados-tabela {
+    width: 100%;
+    text-align: left;
+}
+
+#btnCopiarTabela {
+    margin-top: 10px;
+}
+
+
+
+
