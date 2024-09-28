@@ -1,7 +1,7 @@
 // Lista de usuários cadastrados (simulada)
 const users = [
   { id: "152846", name: "Cb-PM Luanque", email: "luanque@policiamilitar.sp.gov.br", password: "luanque" },
-  { id: "user1", name: "User One", email: "user1@example.com", password: "user123" },
+  { id: "000000", name: "Cb-PM Jefferson", email: "jefferson2024@policiamilitar.sp.gov.br", password: "jefferson2024" },
   { id: "user2", name: "User Two", email: "user2@example.com", password: "user456" },
 ];
 
