@@ -1,38 +1,33 @@
 <!doctype html>
-<html lang="en" data-bs-theme="light">
-
-
-<!-- Mirrored from codervent.com/matoxi/demo/vertical-menu/auth-boxed-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 27 Sep 2024 17:50:12 GMT -->
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Home | Bootstrap demo</title>
   <!--favicon-->
-	<link rel="icon" href="assets/images/favicon-32x32.png" type="image/png">
+  <link rel="icon" href="assets/images/favicon-32x32.png" type="image/png">
 
   <!--plugins-->
   <link href="assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="assets/plugins/metismenu/metisMenu.min.css">
   <link rel="stylesheet" type="text/css" href="assets/plugins/metismenu/mm-vertical.css">
+
   <!--bootstrap css-->
   <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.3/font/bootstrap-icons.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined" rel="stylesheet">
+
   <!--main css-->
   <link href="assets/css/bootstrap-extended.css" rel="stylesheet">
   <link href="sass/main.css" rel="stylesheet">
   <link href="sass/dark-theme.css" rel="stylesheet">
   <link href="sass/responsive.css" rel="stylesheet">
-
-  </head>
+</head>
 
 <body>
 
-
-  <!--authentication-->
-
-  <div class="mx-3 mx-lg-0">
-
+<!--authentication-->
+<div class="mx-3 mx-lg-0">
   <div class="card my-5 col-xl-9 col-xxl-8 mx-auto rounded-4 overflow-hidden p-4">
     <div class="row g-4">
       <div class="col-lg-6 d-flex">
@@ -40,42 +35,21 @@
           <img src="assets/images/logo1.png" class="mb-4" width="145" alt="">
           <h4 class="fw-bold">Get Started Now</h4>
           <p class="mb-0">Enter your credentials to login your account</p>
-          <div class="row gy-2 gx-0 my-4">
-            <div class="col-12 col-lg-12">
-              <button class="btn btn-filter py-2 px-4 font-text1 fw-bold d-flex align-items-center justify-content-center w-100">
-                <span class="auth-social-login"><img src="assets/images/apps/05.png" width="20" class="me-2" alt="">Google</span>
-              </button>
-            </div>
-            <div class="col-12 col-lg-12">
-              <button class="btn btn-filter py-2 px-4 font-text1 fw-bold d-flex align-items-center justify-content-center w-100">
-                <span class="auth-social-login"><img src="assets/images/apps/17.png" width="20" class="me-2" alt="">Facebook</span>
-              </button>
-            </div>
-            <div class="col-12 col-lg-12">
-              <button class="btn btn-filter py-2 px-4 font-text1 fw-bold d-flex align-items-center justify-content-center w-100">
-                <span class="auth-social-login"><img src="assets/images/apps/18.png" width="20" class="me-2" alt="">LinkedIn</span>
-              </button>
-            </div>
-          </div>
 
-          <div class="separator">
-            <div class="line"></div>
-            <p class="mb-0 fw-bold">OR</p>
-            <div class="line"></div>
-          </div>
           <div class="form-body mt-4">
-            <form class="row g-3">
+            <form class="row g-3" id="loginForm">
               <div class="col-12">
-                <label for="inputEmailAddress" class="form-label">Email</label>
-                <input type="email" class="form-control" id="inputEmailAddress" placeholder="jhon@example.com">
+                <label for="inputIdentifier" class="form-label">Nome, Email ou RE</label>
+                <input type="text" class="form-control" id="inputIdentifier" placeholder="Digite seu nome, email ou ID">
               </div>
+
               <div class="col-12">
                 <label for="inputChoosePassword" class="form-label">Password</label>
                 <div class="input-group" id="show_hide_password">
-                  <input type="password" class="form-control border-end-0" id="inputChoosePassword" value="12345678"
-                    placeholder="Enter Password">
-                  <a href="javascript:;" class="input-group-text bg-transparent"><i
-                      class="bi bi-eye-slash-fill"></i></a>
+                  <input type="password" class="form-control border-end-0" id="inputChoosePassword" placeholder="Enter Password">
+                  <button class="input-group-text bg-transparent border-start-0" type="button">
+                    <i class="bi bi-eye-slash-fill"></i>
+                  </button>
                 </div>
               </div>
               <div class="col-md-6">
@@ -84,7 +58,8 @@
                   <label class="form-check-label" for="flexSwitchCheckChecked">Remember Me</label>
                 </div>
               </div>
-              <div class="col-md-6 text-end"> <a href="auth-boxed-forgot-password.html">Forgot Password ?</a>
+              <div class="col-md-6 text-end">
+                <a href="auth-boxed-forgot-password.html">Forgot Password?</a>
               </div>
               <div class="col-12">
                 <div class="d-grid">
@@ -93,9 +68,11 @@
               </div>
               <div class="col-12">
                 <div class="text-start">
-                  <p class="mb-0">Don't have an account yet? <a href="auth-boxed-register.html">Sign up here</a>
-                  </p>
+                  <p class="mb-0">Don't have an account yet? <a href="auth-boxed-register.html">Sign up here</a></p>
                 </div>
+              </div>
+              <div id="loginError" class="alert alert-danger mt-3 d-none" role="alert">
+                Invalid email or password!
               </div>
             </form>
           </div>
@@ -106,42 +83,33 @@
           <img src="assets/images/auth/login1.png" class="img-fluid" alt="">
         </div>
       </div>
-
     </div><!--end row-->
   </div>
-
 </div>
 
+<!--plugins-->
+<script src="assets/js/jquery.min.js"></script>
 
+<!-- Include the login.js script -->
+<script src="login.js"></script>
 
+<script>
+  $(document).ready(function () {
+    $("#show_hide_password button").on('click', function (event) {
+      event.preventDefault();
+      const input = $('#inputChoosePassword');
+      const icon = $(this).find('i');
 
-  <!--authentication-->
-
-
-
-
-  <!--plugins-->
-  <script src="assets/js/jquery.min.js"></script>
-
-  <script>
-    $(document).ready(function () {
-      $("#show_hide_password a").on('click', function (event) {
-        event.preventDefault();
-        if ($('#show_hide_password input').attr("type") == "text") {
-          $('#show_hide_password input').attr('type', 'password');
-          $('#show_hide_password i').addClass("bi-eye-slash-fill");
-          $('#show_hide_password i').removeClass("bi-eye-fill");
-        } else if ($('#show_hide_password input').attr("type") == "password") {
-          $('#show_hide_password input').attr('type', 'text');
-          $('#show_hide_password i').removeClass("bi-eye-slash-fill");
-          $('#show_hide_password i').addClass("bi-eye-fill");
-        }
-      });
+      if (input.attr("type") === "password") {
+        input.attr('type', 'text');
+        icon.removeClass("bi-eye-slash-fill").addClass("bi-eye-fill");
+      } else {
+        input.attr('type', 'password');
+        icon.removeClass("bi-eye-fill").addClass("bi-eye-slash-fill");
+      }
     });
-  </script>
+  });
+</script>
 
 </body>
-
-
-<!-- Mirrored from codervent.com/matoxi/demo/vertical-menu/auth-boxed-login.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 27 Sep 2024 17:50:12 GMT -->
 </html>

@@ -32,6 +32,13 @@
   <link rel="stylesheet" href="assets/css/formatarBNMP.css">
   <link rel="icon" href="assets/ico/algemas.svg" type="image/x-icon">
 
+  <script>
+    // Verifica se o usuário está autenticado
+    if (localStorage.getItem('isAuthenticated') !== 'true') {
+      window.location.href = 'login.html'; // Redireciona para a página de login se não estiver autenticado
+    }
+  </script>
+
 </head>
 
 <body>
@@ -571,33 +578,57 @@
           </a>
         </li>
         <li class="nav-item dropdown">
-          <a href="javascrpt:;" class="dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown">
-             <img src="assets/images/avatars/01.png" class="rounded-circle p-1 border" width="45" height="45">
+          <a href="javascript:;" class="dropdown-toggle dropdown-toggle-nocaret" data-bs-toggle="dropdown">
+            <img src="assets/images/avatars/01.png" class="rounded-circle p-1 border" width="45" height="45">
           </a>
           <div class="dropdown-menu dropdown-user dropdown-menu-end shadow">
-            <a class="dropdown-item  gap-2 py-2" href="javascript:;">
+            <a class="dropdown-item gap-2 py-2" href="javascript:;">
               <div class="text-center">
-                <img src="assets/images/avatars/01.png" class="rounded-circle p-1 shadow mb-3" width="90" height="90"
-                  alt="">
-                <h5 class="user-name mb-0 fw-bold">Hello, Jhon</h5>
+                <img src="assets/images/avatars/01.png" class="rounded-circle p-1 shadow mb-3" width="90" height="90" alt="">
+                <h5 class="user-name mb-0 fw-bold">Hello, <span id="userNameDisplay">Jhon</span></h5>
               </div>
             </a>
             <hr class="dropdown-divider">
-            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;"><i
-              class="material-icons-outlined">person_outline</i>Profile</a>
-            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;"><i
-              class="material-icons-outlined">local_bar</i>Setting</a>
-            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;"><i
-              class="material-icons-outlined">dashboard</i>Dashboard</a>
-            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;"><i
-              class="material-icons-outlined">account_balance</i>Earning</a>
-              <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;"><i
-                class="material-icons-outlined">cloud_download</i>Downloads</a>
+            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;">
+              <i class="material-icons-outlined">person_outline</i>Profile
+            </a>
+            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;">
+              <i class="material-icons-outlined">local_bar</i>Setting
+            </a>
+            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;">
+              <i class="material-icons-outlined">dashboard</i>Dashboard
+            </a>
+            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;">
+              <i class="material-icons-outlined">account_balance</i>Earning
+            </a>
+            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;">
+              <i class="material-icons-outlined">cloud_download</i>Downloads
+            </a>
             <hr class="dropdown-divider">
-            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;"><i
-            class="material-icons-outlined">power_settings_new</i>Logout</a>
+            <a class="dropdown-item d-flex align-items-center gap-2 py-2" href="javascript:;" id="logoutDropdownBtn">
+              <i class="material-icons-outlined">power_settings_new</i>Logout
+            </a>
           </div>
         </li>
+
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            const userName = localStorage.getItem('userName');
+            if (userName) {
+              document.getElementById('userNameDisplay').textContent = userName;
+            } else {
+              window.location.href = 'login.html'; // Se não estiver autenticado, redireciona para login
+            }
+          });
+
+          document.getElementById('logoutDropdownBtn').addEventListener('click', function() {
+            localStorage.removeItem('isAuthenticated'); // Remove o token de autenticação
+            localStorage.removeItem('userName'); // Remove o nome do usuário
+            window.location.href = 'login.html'; // Redireciona para a página de login
+          });
+        </script>
+
+
       </ul>
 
     </nav>
