@@ -12,16 +12,20 @@
   <p><strong>ID do Usuário:</strong> <span id="userId"></span></p>
   <p><strong>Hora de Login:</strong> <span id="loginTime"></span></p>
 
-  <script>
-    // Recupera as informações do localStorage
-    const userName = localStorage.getItem('userName');
-    const userId = localStorage.getItem('userId');
-    const loginTime = localStorage.getItem('loginTime');
+<script>
+  // Recupera as informações do localStorage
+  const userName = localStorage.getItem('userName');
+  const userId = localStorage.getItem('userId');
+  const loginTime = localStorage.getItem('loginTime');
 
-    // Preenche os elementos com os valores recuperados
-    document.getElementById('userName').textContent = userName ? userName : 'Não disponível';
-    document.getElementById('userId').textContent = userId ? userId : 'Não disponível';
-    document.getElementById('loginTime').textContent = loginTime ? loginTime : 'Não disponível';
-  </script>
+  // Converte o loginTime de volta para data legível
+  const formattedLoginTime = loginTime ? new Date(parseInt(loginTime)).toLocaleString() : 'Não disponível';
+
+  // Preenche os elementos com os valores recuperados
+  document.getElementById('userName').textContent = userName ? userName : 'Não disponível';
+  document.getElementById('userId').textContent = userId ? userId : 'Não disponível';
+  document.getElementById('loginTime').textContent = formattedLoginTime;
+</script>
+
 </body>
 </html>
