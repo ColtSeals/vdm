@@ -87,7 +87,17 @@
   </div>
 </div>
 
-  // Função para validar o login
+
+
+<!--plugins-->
+<script src="assets/js/jquery.min.js"></script>
+
+<!-- Include the login.js script -->
+<script src="login.js"></script>
+
+<script>
+
+    // Função para validar o login
 function login(identifier, password) {
   const user = users.find(user =>
       (user.email === identifier || user.name === identifier || user.id === identifier) && user.password === password
@@ -107,13 +117,7 @@ function login(identifier, password) {
   }
 }
 
-<!--plugins-->
-<script src="assets/js/jquery.min.js"></script>
-
-<!-- Include the login.js script -->
-<script src="login.js"></script>
-
-<script>
+  
   $(document).ready(function () {
     $("#show_hide_password button").on('click', function (event) {
       event.preventDefault();
