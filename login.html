@@ -98,6 +98,7 @@
 <script>
 
     // Função para validar o login
+// Função para validar o login
 function login(identifier, password) {
   const user = users.find(user =>
       (user.email === identifier || user.name === identifier || user.id === identifier) && user.password === password
@@ -105,17 +106,18 @@ function login(identifier, password) {
 
   if (user) {
     // Armazena os detalhes do usuário autenticado no localStorage
-    const loginTime = new Date().toLocaleString();  // Armazena o horário de login
+    const loginTime = new Date().getTime();  // Armazena a hora de login como timestamp
     localStorage.setItem('isAuthenticated', 'true');
     localStorage.setItem('userName', user.name);    // Armazena o nome do usuário
     localStorage.setItem('userId', user.id);        // Armazena o ID do usuário
-    localStorage.setItem('loginTime', loginTime);   // Armazena o horário de login
+    localStorage.setItem('loginTime', loginTime);   // Armazena o timestamp do login
     
     return true;
   } else {
     return false;
   }
 }
+
 
 
   
