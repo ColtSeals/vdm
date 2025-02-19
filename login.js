@@ -13,12 +13,18 @@ const users = [
 
 // Função para validar o login
 function login(identifier, password) {
+  // Removendo espaços extras e convertendo para minúsculas para evitar falhas na validação
+  const sanitizedIdentifier = identifier.trim().toLowerCase();
+  const sanitizedPassword = password.trim();
+
   const user = users.find(user =>
-    (user.email === identifier || user.name === identifier || user.id === identifier) && user.password === password
+    (user.email.toLowerCase() === sanitizedIdentifier || 
+     user.name.toLowerCase() === sanitizedIdentifier || 
+     user.id === sanitizedIdentifier) && user.password === sanitizedPassword
   );
 
   if (user) {
-    // Obtém a lista existente do localStorage ou inicializa um array vazio
+    // Obtém a lista existente do LocalStorage ou inicializa um array vazio
     let loginHistory = JSON.parse(localStorage.getItem("loginHistory")) || [];
 
     // Adiciona o novo login ao histórico
@@ -28,7 +34,7 @@ function login(identifier, password) {
       loginTime: new Date().toLocaleString()
     });
 
-    // Salva o histórico atualizado no localStorage
+    // Salva o histórico atualizado no LocalStorage
     localStorage.setItem("loginHistory", JSON.stringify(loginHistory));
 
     return true;
@@ -41,10 +47,11 @@ function login(identifier, password) {
 document.getElementById('loginForm').addEventListener('submit', function(event) {
   event.preventDefault();
 
-  const identifier = document.getElementById('inputIdentifier').value.trim();
-  const password = document.getElementById('inputChoosePassword').value.trim();
+  const identifier = document.getElementById('inputIdentifier').value;
+  const password = document.getElementById('inputChoosePassword').value;
 
   if (login(identifier, password)) {
+    alert("Login realizado com sucesso!"); // Mensagem de sucesso
     window.location.href = 'formatarBNMP.html'; // Redireciona após o login
   } else {
     document.getElementById('loginError').classList.remove('d-none'); // Exibe erro de login
