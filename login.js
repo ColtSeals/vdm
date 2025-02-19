@@ -13,7 +13,6 @@ const users = [
 
 // Função para validar o login
 function login(identifier, password) {
-  // Removendo espaços extras e convertendo para minúsculas para evitar falhas na validação
   const sanitizedIdentifier = identifier.trim().toLowerCase();
   const sanitizedPassword = password.trim();
 
@@ -37,9 +36,9 @@ function login(identifier, password) {
     // Salva o histórico atualizado no LocalStorage
     localStorage.setItem("loginHistory", JSON.stringify(loginHistory));
 
-    return true;
+    return user; // Retorna os dados do usuário
   } else {
-    return false;
+    return null;
   }
 }
 
@@ -50,9 +49,16 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
   const identifier = document.getElementById('inputIdentifier').value;
   const password = document.getElementById('inputChoosePassword').value;
 
-  if (login(identifier, password)) {
-    alert("Login realizado com sucesso!"); // Mensagem de sucesso
-    window.location.href = 'formatarBNMP.html'; // Redireciona após o login
+  const user = login(identifier, password);
+
+  if (user) {
+    alert(`Login realizado com sucesso! Bem-vindo, ${user.userName}`);
+
+    // Atraso para garantir que a página seja redirecionada corretamente
+    setTimeout(() => {
+      window.location.href = 'formatarBNMP.html';
+    }, 500); // Pequeno atraso de 500ms
+
   } else {
     document.getElementById('loginError').classList.remove('d-none'); // Exibe erro de login
   }
