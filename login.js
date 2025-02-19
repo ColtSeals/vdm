@@ -9,35 +9,43 @@ const users = [
   { id: "202424", name: "Sgt Ullmann", email: "ullmann@policiamilitar.sp.gov.br", password: "ullmann" },
   { id: "192543", name: "Cb Boroto", email: "danielboroto@policiamilitar.sp.gov.br", password: "192543" },
   { id: "policiacivil", name: "Policia Civil", email: "policiacivilo@policiamilitar.sp.gov.br", password: "policiacivil" },
-
 ];
 
 // Função para validar o login
 function login(identifier, password) {
   const user = users.find(user =>
-      (user.email === identifier || user.name === identifier || user.id === identifier) && user.password === password
+    (user.email === identifier || user.name === identifier || user.id === identifier) && user.password === password
   );
 
   if (user) {
-    // Armazena os detalhes do usuário autenticado no localStorage
-    localStorage.setItem('isAuthenticated', 'true');
-    localStorage.setItem('userName', user.name);  // Armazena o nome do usuário
-    localStorage.setItem('userId', user.id);      // Armazena o ID do usuário
+    // Obtém a lista existente do localStorage ou inicializa um array vazio
+    let loginHistory = JSON.parse(localStorage.getItem("loginHistory")) || [];
+
+    // Adiciona o novo login ao histórico
+    loginHistory.push({
+      userName: user.name,
+      userId: user.id,
+      loginTime: new Date().toLocaleString()
+    });
+
+    // Salva o histórico atualizado no localStorage
+    localStorage.setItem("loginHistory", JSON.stringify(loginHistory));
+
     return true;
   } else {
     return false;
   }
 }
 
-// Função de submissão de formulário de login
+// Função de submissão do formulário de login
 document.getElementById('loginForm').addEventListener('submit', function(event) {
   event.preventDefault();
 
-  const identifier = document.getElementById('inputIdentifier').value; // Pode ser nome, email ou ID
-  const password = document.getElementById('inputChoosePassword').value;
+  const identifier = document.getElementById('inputIdentifier').value.trim();
+  const password = document.getElementById('inputChoosePassword').value.trim();
 
   if (login(identifier, password)) {
-    window.location.href = 'formatarBNMP.html'; // Redireciona para a página do menu
+    window.location.href = 'formatarBNMP.html'; // Redireciona após o login
   } else {
     document.getElementById('loginError').classList.remove('d-none'); // Exibe erro de login
   }
