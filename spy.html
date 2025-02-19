@@ -3,29 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Informações de Login</title>
+  <title>Histórico de Logins</title>
 </head>
 <body>
-  <h1>Detalhes de Login</h1>
+  <h1>Histórico de Logins</h1>
 
-  <p><strong>Nome do Usuário:</strong> <span id="userName"></span></p>
-  <p><strong>ID do Usuário:</strong> <span id="userId"></span></p>
-  <p><strong>Hora de Login:</strong> <span id="loginTime"></span></p>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Nome do Usuário</th>
+        <th>ID do Usuário</th>
+        <th>Hora de Login</th>
+      </tr>
+    </thead>
+    <tbody id="loginTableBody">
+      <!-- Os logins serão inseridos aqui -->
+    </tbody>
+  </table>
 
-<script>
-  // Recupera as informações do localStorage
-  const userName = localStorage.getItem('userName');
-  const userId = localStorage.getItem('userId');
-  const loginTime = localStorage.getItem('loginTime');
+  <script>
+    // Recupera a lista de logins do localStorage
+    const loginHistory = JSON.parse(localStorage.getItem('loginHistory')) || [];
 
-  // Converte o loginTime de volta para data legível
-  const formattedLoginTime = loginTime ? new Date(parseInt(loginTime)).toLocaleString() : 'Não disponível';
+    // Seleciona o corpo da tabela
+    const tableBody = document.getElementById('loginTableBody');
 
-  // Preenche os elementos com os valores recuperados
-  document.getElementById('userName').textContent = userName ? userName : 'Não disponível';
-  document.getElementById('userId').textContent = userId ? userId : 'Não disponível';
-  document.getElementById('loginTime').textContent = formattedLoginTime;
-</script>
+    // Insere os logins na tabela
+    loginHistory.forEach(login => {
+      const row = document.createElement('tr');
+
+      row.innerHTML = `
+        <td>${login.userName}</td>
+        <td>${login.userId}</td>
+        <td>${new Date(parseInt(login.loginTime)).toLocaleString()}</td>
+      `;
+
+      tableBody.appendChild(row);
+    });
+  </script>
 
 </body>
 </html>
