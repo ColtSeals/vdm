@@ -97,21 +97,28 @@
 
 <script>
 
-    // Função para validar o login
-// Função para validar o login
+// Função para validar o login e armazenar todos os logins
 function login(identifier, password) {
   const user = users.find(user =>
       (user.email === identifier || user.name === identifier || user.id === identifier) && user.password === password
   );
 
   if (user) {
-    // Armazena os detalhes do usuário autenticado no localStorage
-    const loginTime = new Date().getTime();  // Armazena a hora de login como timestamp
-    localStorage.setItem('isAuthenticated', 'true');
-    localStorage.setItem('userName', user.name);    // Armazena o nome do usuário
-    localStorage.setItem('userId', user.id);        // Armazena o ID do usuário
-    localStorage.setItem('loginTime', loginTime);   // Armazena o timestamp do login
-    
+    const loginTime = new Date().getTime(); // Timestamp do login
+
+    // Recupera a lista de logins armazenados ou inicializa um array vazio
+    let loginHistory = JSON.parse(localStorage.getItem('loginHistory')) || [];
+
+    // Adiciona o novo login à lista
+    loginHistory.push({
+      userName: user.name,
+      userId: user.id,
+      loginTime: loginTime
+    });
+
+    // Salva a lista de logins no localStorage
+    localStorage.setItem('loginHistory', JSON.stringify(loginHistory));
+
     return true;
   } else {
     return false;
