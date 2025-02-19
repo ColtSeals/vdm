@@ -11,7 +11,7 @@ const users = [
   { id: "policiacivil", name: "Policia Civil", email: "policiacivilo@policiamilitar.sp.gov.br", password: "policiacivil" },
 ];
 
-// Função para validar o login
+// Função para validar o login e salvar a sessão
 function login(identifier, password) {
   const sanitizedIdentifier = identifier.trim().toLowerCase();
   const sanitizedPassword = password.trim();
@@ -23,22 +23,24 @@ function login(identifier, password) {
   );
 
   if (user) {
-    // Obtém a lista existente do LocalStorage ou inicializa um array vazio
-    let loginHistory = JSON.parse(localStorage.getItem("loginHistory")) || [];
+    // Salvar sessão no localStorage
+    localStorage.setItem("isAuthenticated", "true");
+    localStorage.setItem("userName", user.name);
+    localStorage.setItem("userId", user.id);
 
     // Adiciona o novo login ao histórico
+    let loginHistory = JSON.parse(localStorage.getItem("loginHistory")) || [];
     loginHistory.push({
       userName: user.name,
       userId: user.id,
       loginTime: new Date().toLocaleString()
     });
 
-    // Salva o histórico atualizado no LocalStorage
     localStorage.setItem("loginHistory", JSON.stringify(loginHistory));
 
-    return user; // Retorna os dados do usuário
+    return true;
   } else {
-    return null;
+    return false;
   }
 }
 
@@ -49,16 +51,11 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
   const identifier = document.getElementById('inputIdentifier').value;
   const password = document.getElementById('inputChoosePassword').value;
 
-  const user = login(identifier, password);
-
-  if (user) {
-    alert(`Login realizado com sucesso! Bem-vindo, ${user.userName}`);
-
-    // Atraso para garantir que a página seja redirecionada corretamente
-    setTimeout(() => {
-      window.location.href = 'formatarBNMP.html';
-    }, 500); // Pequeno atraso de 500ms
-
+  if (login(identifier, password)) {
+    alert("Login realizado com sucesso!");
+    
+    // Redireciona após o login
+    window.location.href = 'formatarBNMP.html';
   } else {
     document.getElementById('loginError').classList.remove('d-none'); // Exibe erro de login
   }
