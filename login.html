@@ -97,36 +97,6 @@
 
 <script>
 
-// Função para validar o login e armazenar todos os logins
-function login(identifier, password) {
-  const user = users.find(user =>
-      (user.email === identifier || user.name === identifier || user.id === identifier) && user.password === password
-  );
-
-  if (user) {
-    const loginTime = new Date().getTime(); // Timestamp do login
-
-    // Recupera a lista de logins armazenados ou inicializa um array vazio
-    let loginHistory = JSON.parse(localStorage.getItem('loginHistory')) || [];
-
-    // Adiciona o novo login à lista
-    loginHistory.push({
-      userName: user.name,
-      userId: user.id,
-      loginTime: loginTime
-    });
-
-    // Salva a lista de logins no localStorage
-    localStorage.setItem('loginHistory', JSON.stringify(loginHistory));
-
-    return true;
-  } else {
-    return false;
-  }
-}
-
-
-
   
   $(document).ready(function () {
     $("#show_hide_password button").on('click', function (event) {
