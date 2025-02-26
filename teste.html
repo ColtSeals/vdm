@@ -1,0 +1,85 @@
+<div class="row mt-4">
+    <div class="card">
+        <div class="card-body">
+            <h3 class="mb-3">Abrir BNMP</h3>
+
+            <div class="container">
+                <div class="container-custom">
+                    <!-- Campo de texto para JSON -->
+                    <div class="mb-3">
+                        <textarea id="jsonInput" class="form-control" rows="12" placeholder="Cole o JSON aqui"></textarea>
+                    </div>
+
+                    <!-- Campo de texto para excluir nomes -->
+                    <div class="mb-3">
+                        <textarea id="excludedNames" class="form-control" rows="4" placeholder="Cole os nomes para excluir (um por linha)"></textarea>
+                    </div>
+
+                    <!-- Botão -->
+                    <button class="btn btn-custom" onclick="openTabsFromJSON()">Abrir Mandados</button>
+                </div>
+            </div>
+
+            <!-- Modal para erro -->
+            <div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="errorModalLabel">Erro</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body" id="modalErrorMessage">
+                            <!-- A mensagem de erro será inserida aqui dinamicamente -->
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                function openTab(url) {
+                    var win = window.open(url, '_blank');
+                    win.focus();
+                }
+
+                function openTabsFromJSON() {
+                    var jsonInput = document.getElementById('jsonInput').value;
+                    var excludedNamesInput = document.getElementById('excludedNames').value;
+                    
+                    // Converte a lista de nomes excluídos para um array
+                    var excludedNames = excludedNamesInput.split('\n').map(function(name) {
+                        return name.trim().toUpperCase(); // Faz com que a comparação seja insensível a maiúsculas/minúsculas
+                    });
+
+                    try {
+                        var data = JSON.parse(jsonInput);
+                        if (Array.isArray(data)) {
+                            data.forEach(function(item) {
+                                var name = item.nomePessoa.toUpperCase(); // Obtém o nome e transforma para maiúsculas
+                                if (!excludedNames.includes(name)) { // Verifica se o nome não está na lista de exclusão
+                                    var id = item.id;
+                                    var url = 'https://portalbnmp.cnj.jus.br/#/resumo-peca/' + id + '/1/%2Fpesquisa-peca';
+                                    openTab(url);
+                                }
+                            });
+                        } else {
+                            showErrorModal('O JSON deve ser um array.');
+                        }
+                    } catch (error) {
+                        showErrorModal('Erro ao analisar o JSON.');
+                    }
+                }
+
+                function showErrorModal(message) {
+                    document.getElementById('modalErrorMessage').innerText = message;
+                    var errorModal = new bootstrap.Modal(document.getElementById('errorModal'));
+                    errorModal.show();
+                }
+            </script>
+
+        </div>
+    </div>
+
+</div>
