@@ -8,6 +8,8 @@ const users = [
   { id: "148724", name: "Cb-PM Jefferson", email: "jdds4@policiamilitar.sp.gov.br", password: "254070" },
   { id: "202424", name: "Sgt Ullmann", email: "ullmann@policiamilitar.sp.gov.br", password: "ullmann" },
   { id: "192543", name: "Cb Boroto", email: "danielboroto@policiamilitar.sp.gov.br", password: "192543" },
+ { id: "132097", name: "Cb Leonardo", email: "leonardo@policiamilitar.sp.gov.br", password: "132097" },
+  { id: "138709", name: "Cb Ismael", email: "ismael@policiamilitar.sp.gov.br", password: "138709" },
   { id: "policiacivil", name: "Policia Civil", email: "policiacivilo@policiamilitar.sp.gov.br", password: "policiacivil" },
 ];
 
